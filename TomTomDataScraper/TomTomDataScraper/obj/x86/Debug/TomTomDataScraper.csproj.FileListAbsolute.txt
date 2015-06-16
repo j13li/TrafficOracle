@@ -1,0 +1,10 @@
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\bin\x86\Debug\TomTomDataScraper.exe.config
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\bin\x86\Debug\TomTomDataScraper.exe
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\bin\x86\Debug\TomTomDataScraper.pdb
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\bin\x86\Debug\iAnywhere.Data.SQLAnywhere.v3.5.dll
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\bin\x86\Debug\policy.12.0.iAnywhere.Data.SQLAnywhere.v3.5.dll
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\bin\x86\Debug\iAnywhere.Data.SQLAnywhere.v3.5.xml
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\bin\x86\Debug\iAnywhere.Data.SQLAnywhere.v3.5.config
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\obj\x86\Debug\TomTomDataScraper.exe
+C:\Users\sinbiosl\Desktop\TomTomDataScraper\TomTomDataScraper\obj\x86\Debug\TomTomDataScraper.pdb

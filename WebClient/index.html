@@ -1,0 +1,102 @@
+<html>
+<head>
+	<link type="text/css" rel="Stylesheet" href="css/ui-lightness/jquery-ui-1.8.22.custom.css" />		
+	<link type="text/css" rel="Stylesheet" href="js/timepicker/jquery.ui.timepicker.css?v=0.3.1" />
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.22.custom.min.js"></script>
+	<script type="text/javascript" src="js/timepicker/jquery.ui.timepicker.js"></script>
+	<script type="text/javascript" src="js/json2xml.js"></script>
+	<script type="text/javascript" src="js/calcDelay.js"></script>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function ($) {		
+			// Initialize the timepicker and datepicker elements
+			$( "#datepicker" ).datepicker({ defaultDate: null });
+			$( "#timepicker" ).timepicker();
+
+			// Create the google.maps.Map object
+			mapObj = new google.maps.Map( $('#mapcontainer').get(0), 
+											{
+												zoom: 10,
+												center: new google.maps.LatLng(43.55509, -79.61089),
+												mapTypeId: google.maps.MapTypeId.ROADMAP,
+												scrollwheel : true
+											});
+											
+			// Create the google.maps.DirectionsRenderer object
+			directionsDisplay = new google.maps.DirectionsRenderer(	{ 
+																		draggable: true, 
+																		map : mapObj,  
+																		panel : $('#panelcontainer').get(0)
+																	});
+																	
+			// Listen to the directions_changed event, which is triggered when 
+			// the route is manually edited
+			google.maps.event.addListener(directionsDisplay, 'directions_changed', function() {
+				// Take the index of the route currently displayed on the screen
+				var r = directionsDisplay.routeIndex;
+				if(!r) { r = 0; }
+				// Abort any pending requests
+				if(!ignoreCalc && lastRequest) { 
+					lastRequest.abort();
+				}
+				// Calculate the delay for the currently displayed route
+				calculateDelay(r);
+			});
+			
+			// Change the circles to display depending on the selected route
+			directionsDisplay.changed = function(a) {
+				// Only execute when the changed item is routeIndex
+				if(a == "routeIndex") {
+					// If there are already circles on the screen, hide them
+					if(circles[lastIndex]) {
+						for(c in circles[lastIndex]) {
+							circles[lastIndex][c].setVisible(false);
+						}
+						lastIndex = directionsDisplay.routeIndex;
+						// Show the circles for the selected route
+						if(circles[lastIndex]) {
+							for(d in circles[lastIndex]) {
+								circles[lastIndex][d].setVisible(true);
+							}
+						}
+					}
+				}
+			}
+		});
+	</script>
+</head>
+<body>
+	<div id="mapcontainer" style="float:left; width:70%; height:100%"></div>
+	<div id="info" style="position: absolute; left: 15px; bottom: 10px; width: 300px; background-color: white; opacity: 0.7; padding: 10px; display: none" ></div>
+	<div style="float:right; width:30%; height:100%">
+	 	<div style="margin: 8px">
+		<table style="width:100%">
+			<tr>
+				<td><span style="margin: 2px; vertical-align: middle">Start: </span></td>
+				<td><input style="width:100%" type="text" id="start"></td>
+			</tr>
+			<tr>
+				<td><span style="margin: 2px; vertical-align: middle">Destination: </span></td>
+				<td><input style="width:100%" type="text" id="dest"></td>
+			</tr>
+
+			<tr>
+				<td><span style="margin: 2px; vertical-align: middle">Date: </span></td>
+				<td><input style="width:100%" type="text" id="datepicker"></td>
+			</tr>
+			<tr>
+				<td><span style="margin: 2px; vertical-align: middle">Time: </span></td>
+				<td><input style="width:100%" type="text" id="timepicker"></td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="calcRoute()" value="Route"></td>
+				<td><span style="width:100%" style="text-align: right; margin: 2px; vertical-align: middle; color: red" id="errorMsg"></span></td>
+			</tr>
+		</table>
+	</div>
+	<div id="panelcontainer"></div>
+	</div>
+</body>
+</html>

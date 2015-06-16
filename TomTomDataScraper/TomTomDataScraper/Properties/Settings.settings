@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TomTomDataScraper.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SAConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=torvm3-sup213 sampledb;UID=DBA;PWD=sql</Value>
+    </Setting>
+    <Setting Name="ProxyHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">proxy.phl.sap.corp</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
